@@ -11,6 +11,8 @@ function App() {
   const [ isEmployed, setIsEmployed ] = useState(false);
   const [ sortOption, setSortOption ] = useState("");
   const [ ascending, setAscending ] = useState(true);
+  const [ maxPoints, setMaxPoints ] = useState(325);
+  const [ minPoints, setMinPoints ] = useState(0);
 
 
   useEffect(()=>{
@@ -28,8 +30,12 @@ function App() {
     return selectedCohorts.includes(user.cohort);
   });
 
+  let filterByRange = filterByCohort.filter((user)=>{
+    return user.points_this_month > minPoints && user.points_this_month < maxPoints;
+  });
+
   if(sortOption){
-    filterByCohort.sort((a, b)=>{
+    filterByRange.sort((a, b)=>{
       if(a[sortOption] > b[sortOption]){
         return ascending === "ascending" ? -1 : 1;
       } else {
@@ -38,12 +44,12 @@ function App() {
     });
   }
 
-  let usersToDisplay = filterByCohort.map(({name, cohort, points_this_month, employed}, index)=>(
+  let usersToDisplay = filterByRange.map(({name, cohort, points_this_month, employed}, index)=>(
     <tr key={name + index} className="user-item">
         <td>{name}</td>
         <td>{cohort}</td>
         <td>{points_this_month}</td>
-        <td>{employed}</td>
+        <td>{employed && "X"}</td>
     </tr>
   ));
 
@@ -67,6 +73,14 @@ function App() {
 
   let handleAscending=(e)=>{
     setAscending(e.target.value);
+  }
+
+  let handleMin =(e)=>{
+    setMinPoints(e.target.value)
+  }
+
+  let handleMax =(e)=>{
+    setMaxPoints(Number(e.target.value))
   }
   
   return (
@@ -110,6 +124,32 @@ function App() {
           <option value="ascending">Ascending</option>
           <option value="descending">Descending</option>
         </select>
+      </div>
+      <div>
+        <label htmlFor="minimum">Minimum Monthy Points</label>
+        <input 
+          onChange={handleMin} 
+          type="range" 
+          id="minimum" 
+          name="minimum" 
+          value={minPoints}
+          min="0" 
+          max="325" 
+          step="25" 
+        />
+      </div>
+      <div>
+        <label htmlFor="maximum">Maximum Monthly Points</label>
+        <input 
+          onChange={handleMax} 
+          type="range" 
+          id="maximum" 
+          name="maximum" 
+          value={maxPoints}
+          min="0" 
+          max="325" 
+          step="25" 
+        />
       </div>
       <table id="user-table">
         <thead>
