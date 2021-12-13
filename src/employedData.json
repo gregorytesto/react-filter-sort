@@ -1,0 +1,38 @@
+[
+    {
+        "id": 301,
+        "username": "employed-one",
+        "honor": 189,
+        "codewarsid": "5da74c11a81320002214b682",
+        "name": "Employed One",
+        "role": "fellow",
+        "language": "javascript",
+        "points_this_week": 0,
+        "points_this_month": 60,
+        "email": "cassidybeni@pursuit.org",
+        "clan": null,
+        "github_username": "cassidybeni",
+        "cohort": "Pursuit-7.1",
+        "commits_this_week": 0,
+        "commits_this_month": 0,
+        "employed": true
+    },
+    {
+        "id": 302,
+        "username": "employed-two",
+        "honor": 343,
+        "codewarsid": "60366b1280d9850022ae2911",
+        "name": "Employed Two",
+        "role": "fellow",
+        "language": "javascript",
+        "points_this_week": 0,
+        "points_this_month": 201,
+        "email": "geormarysanchez@pursuit.org",
+        "clan": null,
+        "github_username": "Geormary",
+        "cohort": "Pursuit-7.1",
+        "commits_this_week": 0,
+        "commits_this_month": 0,
+        "employed": true
+    }
+]
